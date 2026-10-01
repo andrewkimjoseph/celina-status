@@ -230,7 +230,7 @@ function StatusPage() {
             <Legend className="bg-destructive" label="Down" />
             <Legend className="bg-muted" label="No data" />
           </div>
-          <div className="divide-y-2 divide-foreground">
+          <div className="grid gap-x-8 gap-y-2 sm:grid-cols-2">
             {MONITORED_SERVICES.map((service) => {
               const live = health?.services.find((row) => row.id === service.id) ?? null;
               const stored = dates.map((date) => storedStatus(uptime, service.id, date));
@@ -459,7 +459,7 @@ function ServiceRow({
   const status = live?.status ?? "unknown";
   const latency = live?.latencyMs == null ? "—" : `${live.latencyMs} ms`;
   return (
-    <div className="py-4 first:pt-0 last:pb-0">
+    <div className="py-4">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <a href={url} className="inline-flex items-center gap-2 font-display text-base font-semibold">
           <span className={`h-2.5 w-2.5 ${BAR[status]}`} />

@@ -10,7 +10,7 @@ Public status page for the Celina stack: live health of the hosted services, 30-
 
 Deployed as a **Cloudflare Worker** (TanStack Start). It is not an npm package.
 
-Live checks ping MCP Remote, the API, the bot, the stats API, the website, Celeste, and this page. Uptime history comes from [celina-stats-api](https://api.stats.usecelina.xyz) `GET /uptime`, which the stats Worker writes once a day. Usage panels read the same stats API (`GET /onchain`, `GET /offchain/*`, `GET /package`) with `STATS_READ_KEY`.
+Live checks ping MCP Remote, the API, the bot, the stats API, the website, and Celeste. Uptime history comes from [celina-stats-api](https://api.stats.usecelina.xyz) `GET /uptime`, which the stats Worker writes once a day. Usage panels read the same stats API (`GET /onchain`, `GET /offchain/*`, `GET /package`) with `STATS_READ_KEY`.
 
 ## Local dev
 
