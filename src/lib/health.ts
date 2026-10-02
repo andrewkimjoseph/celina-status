@@ -13,6 +13,7 @@ export const MONITORED_SERVICES = [
   { id: "website", name: "Website", url: "https://usecelina.xyz/" },
   { id: "celeste", name: "Celeste AI", url: "https://celeste.usecelina.xyz/" },
   { id: "chat", name: "Celina Chat", url: "https://chat.usecelina.xyz/" },
+  { id: "status", name: "Status", url: "https://status.usecelina.xyz/" },
 ] as const;
 
 export type ServiceId = (typeof MONITORED_SERVICES)[number]["id"];
@@ -49,6 +50,19 @@ function statusFromResponse(ok: boolean, latencyMs: number | null): ServiceStatu
 }
 
 async function pingOne(service: (typeof MONITORED_SERVICES)[number]): Promise<ServicePing> {
+  // This check runs inside the status Worker. Fetching its own public URL is
+  // rejected by Cloudflare (error 1042), so record Status in-process instead.
+  if (service.id === "status") {
+    return {
+      id: service.id,
+      name: service.name,
+      url: service.url,
+      status: "operational",
+      latencyMs: null,
+      ok: true,
+    };
+  }
+
   const started = Date.now();
   try {
     const res = await fetch(service.url, {
