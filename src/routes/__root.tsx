@@ -58,7 +58,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <header className="sticky top-0 z-50 border-b-2 border-foreground bg-background">
           <div className="relative mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-            <a href="https://usecelina.xyz" className="flex items-center gap-2">
+            <a href="/" className="flex items-center gap-2">
               <img src="/celina-logo-black.png" alt="Celina" width={36} height={36} className="h-9 w-9" />
               <span className="font-display text-lg font-semibold tracking-tight">Celina</span>
             </a>
